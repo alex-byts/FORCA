@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f1e8">
+    <meta
+      name="description"
+      content="Um jogo da forca simples e divertido para jogar no navegador."
+    >
+    <title>Jogo da Forca</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="game">
+      <header class="game__header">
+        <p class="eyebrow">JOGO CLÁSSICO</p>
+        <h1>Jogo da <span>Forca</span></h1>
+        <p class="intro">Descubra a palavra antes que as tentativas acabem.</p>
+      </header>
+
+      <section class="game__panel" aria-label="Partida de forca">
+        <div class="game__topline">
+          <p class="category">Categoria: <strong id="category">—</strong></p>
+          <p class="lives">Erros: <strong id="mistakes">0</strong><span> / 6</span></p>
+        </div>
+
+        <div class="play-area">
+          <div class="drawing" aria-hidden="true">
+            <svg viewBox="0 0 220 230" role="img">
+              <path class="gallows" d="M25 210h170M65 210V25h105v25" />
+              <circle class="person" id="part-head" cx="170" cy="72" r="20" />
+              <path class="person" id="part-body" d="M170 92v55" />
+              <path class="person" id="part-left-arm" d="m170 108-28 24" />
+              <path class="person" id="part-right-arm" d="m170 108 28 24" />
+              <path class="person" id="part-left-leg" d="m170 147-25 34" />
+              <path class="person" id="part-right-leg" d="m170 147 25 34" />
+            </svg>
+          </div>
+
+          <div class="word-area">
+            <p class="hint-label">A palavra é</p>
+            <p class="word" id="word" aria-label="Palavra para adivinhar"></p>
+            <p class="message" id="message" aria-live="polite">
+              Escolha uma letra para começar.
+            </p>
+          </div>
+        </div>
+
+        <div class="keyboard" id="keyboard" aria-label="Letras para escolher"></div>
+
+        <div class="game__footer">
+          <p class="keyboard-help">Dica: você também pode usar o teclado.</p>
+          <button class="new-game" id="new-game" type="button">Nova palavra</button>
+        </div>
+      </section>
+      <footer class="page-footer">Feito para aprender e se divertir ✦</footer>
+    </main>
+  </body>
+</html>
