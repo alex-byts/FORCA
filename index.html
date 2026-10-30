@@ -10,15 +10,44 @@
     >
     <title>Jogo da Forca</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="config.js"></script>
+    <script type="module" src="script.js"></script>
   </head>
   <body>
     <main class="game">
       <header class="game__header">
         <p class="eyebrow">JOGO CLÁSSICO</p>
         <h1>Jogo da <span>Forca</span></h1>
-        <p class="intro">Descubra a palavra antes que as tentativas acabem.</p>
+        <p class="intro">Jogue sozinho ou desafie outra pessoa online.</p>
       </header>
+
+      <section class="mode-panel" aria-label="Modo de jogo">
+        <div class="mode-switch">
+          <button class="mode-button is-active" id="solo-mode" type="button" aria-pressed="true">
+            Solo
+          </button>
+          <button class="mode-button" id="multiplayer-mode" type="button" aria-pressed="false">
+            Multiplayer online
+          </button>
+        </div>
+        <div class="online-controls" id="online-controls" hidden>
+          <label class="field">
+            <span>Seu nome</span>
+            <input id="player-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Como quer ser chamado?">
+          </label>
+          <div class="room-actions">
+            <button class="new-game" id="create-room" type="button">Criar sala</button>
+            <label class="field room-field">
+              <span>Código da sala</span>
+              <input id="room-code" type="text" maxlength="6" autocomplete="off" placeholder="ABC123">
+            </label>
+            <button class="join-room" id="join-room" type="button">Entrar</button>
+          </div>
+          <p class="online-status" id="online-status" aria-live="polite">
+            Crie uma sala e compartilhe o código com outra pessoa.
+          </p>
+        </div>
+      </section>
 
       <section class="game__panel" aria-label="Partida de forca">
         <div class="game__topline">
