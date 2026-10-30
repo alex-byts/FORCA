@@ -182,8 +182,32 @@ export class GameRoom {
       this.room.winnerId = playerId;
     } else if (this.room.mistakes >= maxMistakes) {
       this.room.gameOver = true;
-    } else {
+    } else if (!normalizedWord.includes(letter)) {
       this.room.turn = (this.room.turn + 1) % this.room.players.length;
+    }
+
+    await this.save();
+    if (this.room.gameOver) {
+      await this.ctx.storage.setAlarm(Date.now() + 3000);
+    }
+    this.broadcast();
+  }
+
+  async alarm() {
+    await this.ready;
+    if (!this.room?.gameOver) return;
+
+    this.room.word = null;
+    this.room.category = null;
+    this.room.guessedLetters = [];
+    this.room.mistakes = 0;
+    this.room.gameOver = false;
+    this.room.winnerId = null;
+    if (this.room.players.length === 2) {
+      this.room.turn = (this.room.turn + 1) % this.room.players.length;
+      const selection = WORDS[Math.floor(Math.random() * WORDS.length)];
+      this.room.word = selection.word;
+      this.room.category = selection.category;
     }
 
     await this.save();

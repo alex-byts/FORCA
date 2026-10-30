@@ -32,6 +32,7 @@ let guessedLetters;
 let mistakes;
 let gameOver;
 let previousWord;
+let nextRoundTimeout;
 let onlineMode = false;
 let multiplayerState = null;
 let multiplayerSocket = null;
@@ -42,6 +43,7 @@ function normalizeLetter(letter) {
 }
 
 function startGame() {
+  clearTimeout(nextRoundTimeout);
   const choices = WORDS.filter((entry) => entry.word !== previousWord);
   const selection = choices[Math.floor(Math.random() * choices.length)];
   currentWord = selection.word;
@@ -155,11 +157,13 @@ function guessLetter(letter) {
     gameOver = true;
     messageElement.textContent = "Você acertou! Mandou bem!";
     messageElement.classList.add("is-win");
+    nextRoundTimeout = setTimeout(startGame, 3000);
   } else if (mistakes >= maxMistakes) {
     gameOver = true;
     messageElement.textContent = `Fim de jogo! A palavra era ${currentWord.toUpperCase()}.`;
     messageElement.classList.add("is-loss");
     renderWord();
+    nextRoundTimeout = setTimeout(startGame, 3000);
   } else {
     messageElement.textContent = "Boa! Tente outra letra.";
   }

@@ -11,4 +11,4 @@ O site pode continuar hospedado no Cloudflare Pages. As salas online precisam ta
 3. Copie a URL pública do Worker e preencha `window.FORCA_MULTIPLAYER_URL` em `config.js`, por exemplo: `https://forca-multiplayer.seu-subdominio.workers.dev`.
 4. Publique os arquivos estáticos no Cloudflare Pages, incluindo `config.js`, `words.js` e `script.js`.
 
-Não coloque chaves ou tokens privados em `config.js`; o endereço público do Worker é a única configuração do navegador. O modo solo funciona sem Worker. Em uma sala online, cada pessoa entra com o mesmo código, as letras são jogadas em turnos alternados e o primeiro a completar a palavra vence.
+Não coloque chaves ou tokens privados em `config.js`; o endereço público do Worker é a única configuração do navegador. O modo solo funciona sem Worker. Em uma sala online, cada pessoa entra com o mesmo código; um acerto mantém a vez do jogador e um erro passa a vez. Ao terminar a rodada, o resultado fica visível por três segundos e uma nova palavra começa automaticamente, alternando quem inicia.
